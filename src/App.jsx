@@ -5,7 +5,7 @@ import Login from "./Pages/Login";
 import Camera from "./Pages/Camera";
 import IaSugere from "./Pages/IaSugere";
 import ModoEstudo from "./Pages/ModoEstudo";
-import OcrResultado from "./Pages/OcrResultado";
+import OcrResultado from "./Pages/OcrResultados";
 import Organizar from "./Pages/Organizar";
 import Galeria from "./Pages/Galeria";
 import { lerDoStorage, salvarNoStorage } from "./Utils/storage";

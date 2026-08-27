@@ -126,7 +126,6 @@ ul {
   color: #FFFFFF;
 }
 
-/* obturador */
 .obturador {
   width: 56px;
   height: 56px;
@@ -145,7 +144,6 @@ ul {
   background-color: #FFFFFF;
 }
 
-/* login */
 .form-login {
   display: flex;
   flex-direction: column;
@@ -302,7 +300,6 @@ ul {
   font-size: 20px;
 }
 
-/* modal */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -456,4 +453,170 @@ ul {
   flex: 1;
   width: auto;
   font-size: 13px;
+}
+
+.subtitulo-secao {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.lista-materias {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.card-materia {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 56px;
+  padding: 0 16px;
+  background-color: #1C1C2E;
+  border-radius: 12px;
+}
+
+.barra-lateral {
+  width: 4px;
+  height: 28px;
+  background-color: #3040C4;
+  border-radius: 4px;
+}
+
+.info-materia {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.info-materia strong {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.info-materia span {
+  font-size: 11px;
+  color: #8B8BA3;
+}
+
+.chevron {
+  font-size: 18px;
+  color: #8B8BA3;
+}
+
+.filtros {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.filtros .chip {
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.grid-fotos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.foto {
+  width: calc(50% - 4px);
+  height: 120px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.bottom-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 64px;
+  background-color: #1C1C2E;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.bottom-nav a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: #8B8BA3;
+}
+
+.bottom-nav a.ativo {
+  color: #6C7BF0;
+  font-weight: 600;
+}
+
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 200;
+}
+
+.lightbox-imagem {
+  width: 100%;
+  max-width: 360px;
+  height: 60vh;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.lightbox-fechar,
+.lightbox-seta {
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #FFFFFF;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox-fechar {
+  top: 16px;
+  right: 16px;
+}
+
+.lightbox-seta-anterior {
+  left: 16px;
+}
+
+.lightbox-seta-proxima {
+  right: 16px;
+}
+
+.lightbox-indicador {
+  position: absolute;
+  bottom: 24px;
+  font-size: 13px;
+  color: #FFFFFF;
 }

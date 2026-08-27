@@ -364,3 +364,96 @@ ul {
   align-items: center;
   margin-top: 8px;
 }
+
+.viewport-estudo {
+  flex: 1;
+  background-color: #000000;
+  border-radius: 12px;
+  min-height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.documento-detectado {
+  border: 2px dashed #FFFFFF;
+  padding: 40px 48px;
+  color: #FFFFFF;
+  font-size: 13px;
+}
+
+.sub-modos {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 8px;
+}
+
+.sub-modo {
+  font-size: 12px;
+  color: #FFFFFF;
+}
+
+.toggle-auto {
+  display: flex;
+  background-color: #1C1C2E;
+  border-radius: 12px;
+  padding: 4px;
+  width: 200px;
+  margin: 0 auto;
+}
+
+.toggle-auto button {
+  flex: 1;
+  height: 32px;
+  border-radius: 8px;
+  color: #8B8BA3;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.toggle-auto button.ativo {
+  background-color: #3040C4;
+  color: #FFFFFF;
+}
+
+.area-obturador {
+  display: flex;
+  justify-content: center;
+  padding: 8px;
+}
+
+.card-ocr {
+  background-color: #1C1C2E;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.card-ocr pre {
+  font-family: inherit;
+  font-size: 13px;
+  color: #FFFFFF;
+  white-space: pre-wrap;
+  line-height: 1.6;
+}
+
+.chip-detectado {
+  align-self: flex-start;
+  background-color: #3040C4;
+  color: #FFFFFF;
+  padding: 6px 14px;
+  border-radius: 15px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.botoes-acao {
+  display: flex;
+  gap: 8px;
+}
+
+.botoes-acao .botao-secundario {
+  flex: 1;
+  width: auto;
+  font-size: 13px;
+}

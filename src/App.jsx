@@ -6,26 +6,32 @@ import Camera from "./Pages/Camera";
 import IaSugere from "./Pages/IaSugere";
 import ModoEstudo from "./Pages/ModoEstudo";
 import OcrResultado from "./Pages/OcrResultados";
+import Organizar from "./Pages/Organizar";
 import { lerDoStorage, salvarNoStorage } from "./Utils/storage";
 import "./style.css";
 
 const MATERIAS_PADRAO = [
-  { nome: "Comp. Thinking with Python", documentos: 23, cor: "#3040C4" },
-  { nome: "Front-End Design", documentos: 10, cor: "#6C7BF0" },
-  { nome: "Software & Total Exp. Design", documentos: 12, cor: "#10B981" },
-  { nome: "Storytelling e Insp. Empreendedora", documentos: 17, cor: "#F59E0B" },
-  { nome: "Web Development", documentos: 15, cor: "#EF4444" },
+  { id: 1, nome: "Comp. Thinking with Python", documentos: 23, cor: "#3040C4" },
+  { id: 2, nome: "Front-End Design", documentos: 10, cor: "#6C7BF0" },
+  { id: 3, nome: "Software & Total Exp. Design", documentos: 12, cor: "#10B981" },
+  { id: 4, nome: "Storytelling e Insp. Empreendedora", documentos: 17, cor: "#F59E0B" },
+  { id: 5, nome: "Web Development", documentos: 15, cor: "#EF4444" },
 ];
 
 const CONFIG_TELAS = {
   "modo-estudo": { titulo: "Modo Estudo", voltarPara: "ia-sugere" },
   "ocr-resultado": { titulo: "Resultado OCR", voltarPara: "modo-estudo" },
+  organizar: { titulo: "Organizar por matéria", voltarPara: "ocr-resultado" },
 };
 
 function App() {
   const [logado, setLogado] = useState(false);
   const [tela, setTela] = useState("camera");
-  const [materias, setMaterias] = useState(() => lerDoStorage("jovi_materias", MATERIAS_PADRAO));
+  const [materias, setMaterias] = useState(() => {
+    const carregado = lerDoStorage("jovi_materias", MATERIAS_PADRAO);
+    salvarNoStorage("jovi_materias", carregado);
+    return carregado;
+  });
 
   function navegarPara(novaTela) {
     setTela(novaTela);
@@ -40,6 +46,14 @@ function App() {
       return atualizado;
     });
     void palavras;
+  }
+
+  function adicionarMateria(novaMateria) {
+    setMaterias((atual) => {
+      const atualizado = [...atual, novaMateria];
+      salvarNoStorage("jovi_materias", atualizado);
+      return atualizado;
+    });
   }
 
   if (!logado) {
@@ -65,12 +79,12 @@ function App() {
         <OcrResultado aoNavegar={navegarPara} aoRegistrarDocumento={registrarDocumento} />
       )}
       {tela === "organizar" && (
-        <main className="conteudo">
-          <p>Total de matérias salvas: {materias.length}</p>
-        </main>
+        <Organizar materias={materias} aoAdicionarMateria={adicionarMateria} aoNavegar={navegarPara} />
       )}
 
-      {tela === "camera" && <Footer telaAtiva={tela} aoNavegar={navegarPara} />}
+      {["camera", "organizar"].includes(tela) && (
+        <Footer telaAtiva={tela} aoNavegar={navegarPara} />
+      )}
     </div>
   );
 }

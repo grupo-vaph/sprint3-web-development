@@ -1,41 +1,44 @@
 import { useState } from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import Login from "./pages/Login";
-import Camera from "./pages/Camera";
-import IaSugere from "./pages/IaSugere";
-import ModoEstudo from "./pages/ModoEstudo";
-import OcrResultado from "./pages/OcrResultado";
-import { lerDoStorage, salvarNoStorage } from "./utils/storage";
+import Login from "./Pages/Login";
+import Camera from "./Pages/Camera";
+import IaSugere from "./Pages/IaSugere";
+import ModoEstudo from "./Pages/ModoEstudo";
+import OcrResultado from "./Pages/OcrResultado";
+import Organizar from "./Pages/Organizar";
+import Galeria from "./Pages/Galeria";
+import { lerDoStorage, salvarNoStorage } from "./Utils/storage";
 import "./style.css";
 
 const MATERIAS_PADRAO = [
-  { nome: "Comp. Thinking with Python", documentos: 23, cor: "#3040C4" },
-  { nome: "Front-End Design", documentos: 10, cor: "#6C7BF0" },
-  { nome: "Software & Total Exp. Design", documentos: 12, cor: "#10B981" },
-  { nome: "Storytelling e Insp. Empreendedora", documentos: 17, cor: "#F59E0B" },
-  { nome: "Web Development", documentos: 15, cor: "#EF4444" },
+  { id: 1, nome: "Comp. Thinking with Python", documentos: 23, cor: "#3040C4" },
+  { id: 2, nome: "Front-End Design", documentos: 10, cor: "#6C7BF0" },
+  { id: 3, nome: "Software & Total Exp. Design", documentos: 12, cor: "#10B981" },
+  { id: 4, nome: "Storytelling e Insp. Empreendedora", documentos: 17, cor: "#F59E0B" },
+  { id: 5, nome: "Web Development", documentos: 15, cor: "#EF4444" },
 ];
 
-// Configuração de cabeçalho por tela (título e para onde volta)
 const CONFIG_TELAS = {
   "modo-estudo": { titulo: "Modo Estudo", voltarPara: "ia-sugere" },
   "ocr-resultado": { titulo: "Resultado OCR", voltarPara: "modo-estudo" },
+  organizar: { titulo: "Organizar por matéria", voltarPara: "ocr-resultado" },
+  galeria: { titulo: "Galeria Acadêmica", voltarPara: "organizar" },
 };
 
 function App() {
   const [logado, setLogado] = useState(false);
   const [tela, setTela] = useState("camera");
-  // Lê as matérias do localStorage assim que o app inicia (se não houver
-  // nada salvo ainda, usa a lista padrão)
-  const [materias, setMaterias] = useState(() => lerDoStorage("jovi_materias", MATERIAS_PADRAO));
+  const [materias, setMaterias] = useState(() => {
+    const carregado = lerDoStorage("jovi_materias", MATERIAS_PADRAO);
+    salvarNoStorage("jovi_materias", carregado);
+    return carregado;
+  });
 
   function navegarPara(novaTela) {
     setTela(novaTela);
   }
 
-  // Chamada quando um novo documento é capturado via OCR: incrementa o
-  // contador da matéria correspondente e persiste no localStorage.
   function registrarDocumento({ materia, palavras }) {
     setMaterias((atual) => {
       const atualizado = atual.map((item) =>
@@ -45,6 +48,14 @@ function App() {
       return atualizado;
     });
     void palavras;
+  }
+
+  function adicionarMateria(novaMateria) {
+    setMaterias((atual) => {
+      const atualizado = [...atual, novaMateria];
+      salvarNoStorage("jovi_materias", atualizado);
+      return atualizado;
+    });
   }
 
   if (!logado) {
@@ -70,12 +81,13 @@ function App() {
         <OcrResultado aoNavegar={navegarPara} aoRegistrarDocumento={registrarDocumento} />
       )}
       {tela === "organizar" && (
-        <main className="conteudo">
-          <p>Total de matérias salvas: {materias.length}</p>
-        </main>
+        <Organizar materias={materias} aoAdicionarMateria={adicionarMateria} aoNavegar={navegarPara} />
       )}
+      {tela === "galeria" && <Galeria />}
 
-      {tela === "camera" && <Footer telaAtiva={tela} aoNavegar={navegarPara} />}
+      {["camera", "organizar", "galeria"].includes(tela) && (
+        <Footer telaAtiva={tela} aoNavegar={navegarPara} />
+      )}
     </div>
   );
 }

@@ -1,12 +1,17 @@
 import { useState } from "react";
-import Header from "./components/Header";
 import Footer from "./components/Footer";
-import Login from "../src/Pages/Pages";
+import Login from "./Pages/Login";
+import Camera from "./Pages/Camera";
+import IaSugere from "./Pages/IaSugere";
 import "./style.css";
 
 function App() {
   const [logado, setLogado] = useState(false);
-  const [telaAtiva, setTelaAtiva] = useState("camera");
+  const [tela, setTela] = useState("camera");
+
+  function navegarPara(novaTela) {
+    setTela(novaTela);
+  }
 
   if (!logado) {
     return (
@@ -18,13 +23,10 @@ function App() {
 
   return (
     <div className="celular">
-      <Header titulo="Jovi Camera" aoVoltar={() => alert("Voltar clicado")} />
+      {tela === "camera" && <Camera aoNavegar={navegarPara} />}
+      {tela === "ia-sugere" && <IaSugere aoNavegar={navegarPara} />}
 
-      <main className="conteudo">
-        <p>Tela atual: {telaAtiva}</p>
-      </main>
-
-      <Footer telaAtiva={telaAtiva} aoNavegar={setTelaAtiva} />
+      {tela === "camera" && <Footer telaAtiva={tela} aoNavegar={navegarPara} />}
     </div>
   );
 }

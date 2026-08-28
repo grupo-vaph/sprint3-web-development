@@ -620,3 +620,7 @@ ul {
   font-size: 13px;
   color: #FFFFFF;
 }
+
+.form-login .botao-primario {
+  align-self: center;
+}

@@ -1,0 +1,9 @@
+Enzo Gabriel Pereira                       RM: 570659
+Henrique Giusti de Souza                   RM: 570766
+Pedro Henrique Moura Aguiar                RM: 570715
+Pietro Alexandre Guerato                   RM: 571232
+Victor Ulisses de Morais Silva             RM: 572634
+
+Link do Vercel: https://sprint3-web-development-liart.vercel.app/
+
+Link do repositório GitHub: https://github.com/grupo-vaph/sprint3-web-development

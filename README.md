@@ -144,7 +144,7 @@ Ao longo do processo, os testes de cada tela no navegador, a leitura das mensage
 
 ## Deploy
 
-Link da aplicação em produção (Vercel): 
+Link da aplicação em produção (Vercel): <https://sprint3-web-development-liart.vercel.app/>
 
 Link do repositório: <https://github.com/grupo-vaph/sprint3-web-development>
 
